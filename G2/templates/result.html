@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101523">
+  <title>Your prediction · PokéType Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark">P</span><span>PokéType <span class="brand-light">Lab</span></span></a>
+    <nav aria-label="Main navigation">
+      <a href="{{ url_for('home') }}">Overview</a>
+      <a class="nav-active" href="{{ url_for('predict') }}">Predict</a>
+    </nav>
+  </header>
+
+  <main class="page-shell result-shell">
+    <div class="result-card">
+      <div class="result-orb" aria-hidden="true"><span>✦</span></div>
+      <p class="eyebrow"><span class="eyebrow-dot"></span> PREDICTION COMPLETE</p>
+      <h1>Your Pokémon’s primary type</h1>
+      <p class="result-type">{{ prediction }}</p>
+      <p class="muted result-caption">That’s the model’s prediction based on the stats you entered.</p>
+
+      <div class="stats-summary">
+        <p class="section-kicker">YOUR INPUTS</p>
+        <dl>
+          <div><dt>Height (dm)</dt><dd>{{ values.height_dm }}</dd></div>
+          <div><dt>Weight (hg)</dt><dd>{{ values.weight_hg }}</dd></div>
+          <div><dt>Base experience</dt><dd>{{ values.base_experience }}</dd></div>
+          <div><dt>HP</dt><dd>{{ values.hp }}</dd></div>
+          <div><dt>Attack</dt><dd>{{ values.attack }}</dd></div>
+          <div><dt>Defense</dt><dd>{{ values.defense }}</dd></div>
+        </dl>
+      </div>
+      <div class="result-actions">
+        <a class="button button-primary" href="{{ url_for('predict') }}">Try another Pokémon <span aria-hidden="true">→</span></a>
+        <a class="button button-secondary" href="{{ url_for('home') }}">Project overview</a>
+      </div>
+      <p class="disclaimer">Predictions are estimates from the provided model and may not match official classifications.</p>
+    </div>
+  </main>
+
+  <footer class="site-footer"><span>PokéType Lab</span><span>Machine learning, made playful.</span></footer>
+</body>
+</html>

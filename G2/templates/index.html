@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101523">
+  <meta name="description" content="Explore a machine-learning project that predicts a Pokémon's primary battle type from its base statistics.">
+  <title>PokéType Lab · Pokémon type predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark">P</span><span>PokéType <span class="brand-light">Lab</span></span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-active" href="{{ url_for('home') }}">Overview</a>
+      <a href="{{ url_for('predict') }}">Predict</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero page-shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> A POKÉMON TYPE PREDICTION PROJECT</p>
+        <h1>What’s their<br><span class="gradient-text">battle type?</span></h1>
+        <p class="hero-description">A machine-learning model reads a Pokémon’s stats and predicts its primary battle type. Enter a few base attributes and see what the numbers suggest.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="{{ url_for('predict') }}">Try a prediction <span aria-hidden="true">→</span></a>
+          <a class="text-link" href="#about">Explore the project <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-footnote"><span class="pulse-dot"></span> Powered by your trained classification model</div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="spark spark-one">✦</div><div class="spark spark-two">✧</div>
+        <div class="pokeball">
+          <div class="ball-top"></div><div class="ball-bottom"></div><div class="ball-line"></div>
+          <div class="ball-button"><span></span></div>
+        </div>
+        <div class="float-card float-card-top"><span class="card-icon">✦</span><span><b>Stats in</b><small>6 attributes</small></span></div>
+        <div class="float-card float-card-bottom"><span class="type-symbol">?</span><span><b>Type out</b><small>One prediction</small></span></div>
+      </div>
+    </section>
+
+    <section class="project-section page-shell" id="about">
+      <div class="section-intro">
+        <p class="section-kicker">THE PROJECT</p>
+        <h2>From base stats<br>to battle type.</h2>
+        <p class="muted">This project puts a trained classifier behind a simple, interactive prediction experience.</p>
+      </div>
+      <div class="feature-list">
+        <article class="feature-card">
+          <span class="feature-number">01</span>
+          <div><h3>Enter the stats</h3><p>Provide Height, Weight, HP, Attack, Defense, and Base experience for a Pokémon.</p></div>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">02</span>
+          <div><h3>Let the model decide</h3><p>The saved classification model evaluates the values using its learned patterns.</p></div>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">03</span>
+          <div><h3>See the prediction</h3><p>Get the predicted primary type along with a recap of the submitted stats.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-strip page-shell">
+      <div><p class="section-kicker">READY TO TEST IT?</p><h2>Let’s find your Pokémon’s type.</h2></div>
+      <a class="button button-primary" href="{{ url_for('predict') }}">Start predicting <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>PokéType Lab</span><span>Machine learning, made playful.</span></footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101523">
+  <title>Predict a type · PokéType Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark">P</span><span>PokéType <span class="brand-light">Lab</span></span></a>
+    <nav aria-label="Main navigation">
+      <a href="{{ url_for('home') }}">Overview</a>
+      <a class="nav-active" href="{{ url_for('predict') }}">Predict</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <div class="page-heading">
+      <p class="eyebrow"><span class="eyebrow-dot"></span> MODEL INPUT</p>
+      <h1>Build your battle profile.</h1>
+      <p class="muted">Enter a Pokémon’s base stats to estimate its primary battle type.</p>
+    </div>
+
+    <section class="form-card">
+      <div class="form-card-heading">
+        <div>
+          <p class="section-kicker">POKÉMON STATISTICS</p>
+          <h2>Tell us about your Pokémon</h2>
+        </div>
+        <span class="step-badge">6 inputs</span>
+      </div>
+
+      {% if errors %}
+      <div class="error-box" role="alert">
+        <strong>Check your entries</strong>
+        <ul>
+          {% for error in errors %}<li>{{ error }}</li>{% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      <form action="{{ url_for('predict') }}" method="post">
+        <div class="form-grid">
+          <label class="field" for="height_dm">
+            <span class="field-label">Height <span class="field-hint">Decimeters (dm)</span></span>
+            <input id="height_dm" name="height_dm" type="number" min="0" step="any" placeholder="e.g. 7" value="{{ values.get('height_dm', '') }}" required>
+          </label>
+          <label class="field" for="weight_hg">
+            <span class="field-label">Weight <span class="field-hint">Hectograms (hg)</span></span>
+            <input id="weight_hg" name="weight_hg" type="number" min="0" step="any" placeholder="e.g. 60" value="{{ values.get('weight_hg', '') }}" required>
+          </label>
+          <label class="field" for="base_experience">
+            <span class="field-label">Base experience <span class="field-hint">Experience yield</span></span>
+            <input id="base_experience" name="base_experience" type="number" min="0" step="any" placeholder="e.g. 64" value="{{ values.get('base_experience', '') }}" required>
+          </label>
+          <label class="field" for="hp">
+            <span class="field-label">HP <span class="field-hint">Hit points</span></span>
+            <input id="hp" name="hp" type="number" min="0" step="any" placeholder="e.g. 45" value="{{ values.get('hp', '') }}" required>
+          </label>
+          <label class="field" for="attack">
+            <span class="field-label">Attack <span class="field-hint">Physical power</span></span>
+            <input id="attack" name="attack" type="number" min="0" step="any" placeholder="e.g. 49" value="{{ values.get('attack', '') }}" required>
+          </label>
+          <label class="field" for="defense">
+            <span class="field-label">Defense <span class="field-hint">Physical resilience</span></span>
+            <input id="defense" name="defense" type="number" min="0" step="any" placeholder="e.g. 49" value="{{ values.get('defense', '') }}" required>
+          </label>
+        </div>
+        <div class="form-footer">
+          <p class="form-note"><span class="info-icon">i</span> Height is in decimeters and weight is in hectograms.</p>
+          <button class="button button-primary" type="submit">Predict type <span aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </section>
+    <p class="back-link"><a href="{{ url_for('home') }}">← Back to project overview</a></p>
+  </main>
+
+  <footer class="site-footer"><span>PokéType Lab</span><span>Machine learning, made playful.</span></footer>
+</body>
+</html>
